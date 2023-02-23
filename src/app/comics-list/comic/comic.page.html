@@ -1,0 +1,130 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tab/comics"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{comic.name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center">
+    <ion-button (click)="setModif()">
+      <span *ngIf="modif">Annuler</span>
+      <span *ngIf="!modif">Modifier</span>
+    </ion-button>
+    <ion-button (click)="onDelete(comic.id)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-button>
+  </div>
+  <div *ngIf="!modif">
+    <ion-grid>
+      <ion-row>
+       <ion-col>
+         <strong>Lu : </strong>
+         <ion-icon *ngIf="comic.isRead" name="checkmark"></ion-icon>
+         <ion-icon *ngIf="!comic.isRead" name="close-circle"></ion-icon>
+       </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <img [src]="comic.cover" [alt]="comic.name">
+        </ion-col>
+        <ion-col size="6">
+          <strong>
+            {{comic.name}}
+            <span *ngIf="comic.isSerie">#{{comic.seriesNumber}}</span>
+          </strong>
+          <br>
+          <br>
+          Par : <strong>{{comic.author}}</strong>
+          <br>
+          <br>
+          Dessiné par : <strong>{{comic.designer}}</strong>
+          <br>
+          <br>
+          Sortie le : <strong>{{comic.releaseDate}}</strong>
+          <br>
+          <br>
+          <strong>{{comic.typeOfList}}</strong>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p>{{comic.description}}</p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div *ngIf="modif">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Cover : </ion-label>
+            <ion-input type="text" [(ngModel)]="comic.cover"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Nom du comic : </ion-label>
+            <ion-input type="text" [(ngModel)]="comic.name"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Auteur : </ion-label>
+            <ion-input type="text" [(ngModel)]="comic.author"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Dessinateur : </ion-label>
+            <ion-input type="text" [(ngModel)]="comic.designer"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Date de sortie : </ion-label>
+            <ion-input type="text" [(ngModel)]="comic.releaseDate"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Type de liste : </ion-label>
+            <ion-select [(ngModel)]="comic.typeOfList">
+              <ion-select-option [value]="'wishList'">Liste d'envie</ion-select-option>
+              <ion-select-option [value]="'readingList'">Liste de lecture</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Univers du comic : </ion-label>
+            <ion-select [(ngModel)]="comic.universe">
+              <ion-select-option [value]="'marvel'">Marvel Comics</ion-select-option>
+              <ion-select-option [value]="'dc'">DC Comics</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-item>
+            <ion-label>Fait partie d'une série ?</ion-label>
+            <ion-toggle [(ngModel)]="comic.isSerie"></ion-toggle>
+          </ion-item>
+          <ion-item>
+            <ion-label>Si oui, numéro du comics</ion-label>
+            <ion-input type="text" [(ngModel)]="comic.seriesNumber"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Comic lu ?</ion-label>
+            <ion-toggle [(ngModel)]="comic.isRead"></ion-toggle>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Description : </ion-label>
+            <ion-textarea rows="15" [(ngModel)]="comic.description"></ion-textarea>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-margin-bottom ion-text-center">
+          <ion-button (click)="onModif()" class="ion-margin-bottom">Modifier</ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
