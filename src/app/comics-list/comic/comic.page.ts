@@ -38,12 +38,13 @@ export class ComicPage implements OnInit {
           },
           {
             text: 'Confirmer',
-            handler: () => { this.modif = !this.modif }
+            handler: () => (this.modif = !this.modif)
           }
         ]
       });
 
       await alert.present();
+      await alert.onDidDismiss();
     }
     else {
       this.modif = !this.modif
@@ -53,16 +54,45 @@ export class ComicPage implements OnInit {
   async presentToast(){
     const toast = this.toastCtrl.create({
       message: 'Vos modifications ont été enregistrées !',
-      duration: 2000
+      duration: 1000
     });
     (await toast).present();
   }
 
-  onModif(){
-    this.Comic.update(this.comic).subscribe(() => {
-      this.presentToast();
-      this.modif = false;
+  async errorToast() {
+    const toast = this.toastCtrl.create({
+      message: 'Tous les champs nécessaires n\'ont pas été complétés !',
+      duration: 1000
     });
+    (await toast).present()
+  }
+
+
+  onModif(){
+    if(this.comic.cover == '' || this.comic.name == '' || this.comic.author == '' || this.comic.designer == '' ||
+      this.comic.releaseDate == '' || this.comic.typeOfList == '' || this.comic.universe == ''
+      || this.comic.description == ''){
+      this.errorToast();
+    }
+    else{
+      if(this.comic.isSerie == true){
+        if(this.comic.seriesNumber == ''){
+          this.errorToast()
+        }
+        else {
+          this.Comic.update(this.comic).subscribe(() => {
+            this.presentToast();
+            this.modif = false;
+          });
+        }
+      }
+      else {
+        this.Comic.update(this.comic).subscribe(() => {
+          this.presentToast();
+          this.modif = false;
+        });
+      }
+    }
   }
 
   onDelete(id: any) {

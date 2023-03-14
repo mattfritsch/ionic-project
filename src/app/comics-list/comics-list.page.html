@@ -5,21 +5,31 @@
 </ion-header>
 
 <ion-content>
-  <h2>Création d'un nouveau comics</h2>
-  <ion-button routerLink="/tab/comics/new">+</ion-button>
-  <h2>Liste des comics</h2>
+  <h2 class="ion-text-center">Liste des comics</h2>
   <ion-grid>
     <ion-row>
       <ion-col size="6" *ngFor="let comic of comics">
         <ion-list [routerLink]="['/tab/comics/', comic.id]">
           <ion-item>
-            <img [src]="comic.cover" [alt]="comic.name">
+            <img [src]="comic.cover" [alt]="comic.name" width="250" height="200">
           </ion-item>
-          <ion-item>
-            {{comic.name}}
+          <ion-item *ngIf="comic.universe === 'marvel'">
+            <ion-text color="primary">
+              {{comic.name}} <span *ngIf="comic.isSerie"> #{{comic.seriesNumber}}</span>
+            </ion-text>
+          </ion-item>
+          <ion-item *ngIf="comic.universe === 'dc'">
+            <ion-text color="tertiary">
+              {{comic.name}} <span *ngIf="comic.isSerie"> #{{comic.seriesNumber}}</span>
+            </ion-text>
           </ion-item>
         </ion-list>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button routerLink="/tab/comics/new">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

@@ -11,53 +11,53 @@
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-label>Cover : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Cover : </ion-label>
           <ion-input type="text" [(ngModel)]="comic.cover"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Nom du comic : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Nom du comic : </ion-label>
           <ion-input type="text" [(ngModel)]="comic.name"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Auteur : </ion-label>
-          <ion-input type="text" [(ngModel)]="comic.author"></ion-input>
+        <ion-item fill="outline">
+          <ion-label position="floating">Auteur : </ion-label>
+          <ion-input type="text" [(ngModel)]="comic.author" ></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Dessinateur : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Dessinateur : </ion-label>
           <ion-input type="text" [(ngModel)]="comic.designer"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
+        <ion-item fill="outline">
           <ion-label>Date de sortie : </ion-label>
           <ion-input type="text" [(ngModel)]="comic.releaseDate"></ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label>Type de liste : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Type de liste : </ion-label>
           <ion-select [(ngModel)]="comic.typeOfList">
             <ion-select-option [value]="'wishList'">Liste d'envie</ion-select-option>
             <ion-select-option [value]="'readingList'">Liste de lecture</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item>
-          <ion-label>Univers du comic : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Univers du comic : </ion-label>
           <ion-select [(ngModel)]="comic.universe">
             <ion-select-option [value]="'marvel'">Marvel Comics</ion-select-option>
             <ion-select-option [value]="'dc'">DC Comics</ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item>
+        <ion-item fill="outline">
           <ion-label>Fait partie d'une série ?</ion-label>
           <ion-toggle [(ngModel)]="comic.isSerie"></ion-toggle>
         </ion-item>
-        <ion-item>
-          <ion-label>Si oui, numéro du comics</ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Si oui, numéro du comics</ion-label>
           <ion-input type="text" [(ngModel)]="comic.seriesNumber"></ion-input>
         </ion-item>
-        <ion-item>
+        <ion-item fill="outline">
           <ion-label>Comic lu ?</ion-label>
           <ion-toggle [(ngModel)]="comic.isRead"></ion-toggle>
         </ion-item>
@@ -65,8 +65,8 @@
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item>
-          <ion-label>Description : </ion-label>
+        <ion-item fill="outline">
+          <ion-label position="floating">Description : </ion-label>
           <ion-textarea rows="15" [(ngModel)]="comic.description"></ion-textarea>
         </ion-item>
       </ion-col>

@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/tab/comics"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{comic.name}}</ion-title>
+    <ion-title *ngIf="comic">{{comic.name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -18,7 +18,7 @@
     </ion-button>
   </div>
   <div *ngIf="!modif">
-    <ion-grid>
+    <ion-grid *ngIf="comic">
       <ion-row>
        <ion-col>
          <strong>Lu : </strong>
@@ -57,7 +57,7 @@
     </ion-grid>
   </div>
   <div *ngIf="modif">
-    <ion-grid>
+    <ion-grid *ngIf="comic">
       <ion-row>
         <ion-col>
           <ion-item>
